@@ -206,22 +206,22 @@ function showData(tabName) {
         for (const key in data) {
             if(key == 'Bonificaciones' || key == 'Impuestos' || key == 'Hora'){
             }else{
-                html += `<th>${key}</th>`;
+                html += `<th title='${key}'>${key}</th>`;
             }
         }
-        html += `<th>Editar</th>`; // Agregar una columna para editar
-        html += `<th>Eliminar</th>`; // Agregar una columna para eliminar
+        html += `<th title='Editar'>Editar</th>`; // Agregar una columna para editar
+        html += `<th title='Eliminar'>Eliminar</th>`; // Agregar una columna para eliminar
         html += `</tr>`;
         for (let i = 0; i < data[Object.keys(data)[0]].length; i++) {
             html += `<tr id = '${i}'>`;
             for (const key in data) {
                 if(key === 'Bonificaciones' || key === 'Impuestos' || key === 'Hora'){
                 }else{
-                    html += `<td>${data[key][i]}</td>`;
+                    html += `<td title='${data[key][i]}'>${data[key][i]}</td>`;
                }
             }
-            html += `<td><button onclick="editDataModal('${tabName}', ${i})"><img src="/assets/img/editar.png"/></button></td>`; // Botón para editar
-            html += `<td><button onclick="deleteDataModal('${tabName}', ${i})"><img src="/assets/img/eliminar.png"/></button></td>`; // Botón para eliminar
+            html += `<td title='Editar registro'><button onclick="editDataModal('${tabName}', ${i})"><img src="/assets/img/editar.png"/></button></td>`; // Botón para editar
+            html += `<td title='Eliminar registro'><button onclick="deleteDataModal('${tabName}', ${i})"><img src="/assets/img/eliminar.png"/></button></td>`; // Botón para eliminar
             html += `</tr>`;
         }
         html += `</table>`;
@@ -265,7 +265,6 @@ window.editDataModal = function editDataModal(tabName, index) {
                 }else if(key === 'Salario por hora' || key === 'Salario por dia' || key === 'Horas laboradas' || key === 'Horas extras' || key === 'Dias laborados' || key === 'Dias extras'){
                     html += `<input type="number" name="${key}" id="${key}" value="${info[key]}" onkeydown="return event.keyCode !== 69 && event.keyCode !== 189 && event.key !== ','" max="99999999" min="0" step="any" required/>`;
                 }
-                html += `<br/>`;
             }
         }
 
@@ -317,9 +316,19 @@ window.editDataModal = function editDataModal(tabName, index) {
         }
         data['Bonos'] = totalBono.toFixed(2);
         let totalImpuesto = 0;
+        let impuesto = 0;
         for(let i = 0; i < info['Impuestos'].length; i++){
-            const impuesto = impuestos[info['Impuestos'][i]] * data['Total'];
-            totalImpuesto += impuesto;
+            if(info['Impuestos'][i] === 'ISPT'){
+                for(const key in impuestos[info['Impuestos'][i]]){
+                    if(data['Total'] >= impuestos[info['Impuestos'][i]][key][0] && data['Total'] <= impuestos[info['Impuestos'][i]][key][1]){
+                        impuesto = key * data['Total'];
+                        totalImpuesto += impuesto;
+                    }
+                }
+            }else{
+                impuesto = impuestos[info['Impuestos'][i]] * data['Total'];
+                totalImpuesto += impuesto;
+            }
         }
         data['Impuesto'] = totalImpuesto.toFixed(2);
         const totalPagar = data['Total'] + totalBono - totalImpuesto;

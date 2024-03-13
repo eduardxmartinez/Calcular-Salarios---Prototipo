@@ -73,12 +73,20 @@ body {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   }
 
+.tab-container label {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font-size: 0.8em;
+  }	
+
 .tab-content {
-    margin-left: 15px;
+    margin-left: 10px;
     margin-right: 5px;
     flex-basis: 35%; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
     flex-grow: 0; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
-    padding: 20px;
+    padding: 10px;
+    padding-right: 15px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
@@ -105,6 +113,11 @@ h1 {
     margin-bottom: 20px;
 }
 
+h2 {
+    font-size: 1.4em;
+    text-align: center;
+    margin-bottom: 20px;
+}
 
 
 
@@ -112,16 +125,16 @@ h1 {
 /* Estilos de la tabla */
 .table-content {
     margin-left: 5px;
-    margin-right: 15px;
+    margin-right: 10px;
     flex-basis: 0; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
     flex-grow: 1; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
-    padding: 20px;
+    padding: 10px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
-    width: 75%;
+    width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -134,7 +147,7 @@ h1 {
 }
 
 .table-content th, .table-content td {
-    max-width: 4.1vw;
+    max-width: 4.4vw;
     text-align: center;
     padding: 3px;
     overflow: hidden; /* Oculta el texto que se sale del ancho máximo */
@@ -145,6 +158,11 @@ h1 {
 .table-content th {
     background-color: #f4f4f4;
     font-size: 0.6em;
+}
+
+.table-content td {
+    font-size: 0.8em;
+    cursor: pointer;
 }
 
 .table-content img{
@@ -171,29 +189,47 @@ h1 {
 
 .modal-content {
     position: relative;
-    max-width: 50%;
+    max-width: 90vw;
+    max-height: 90vh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
+    padding: 10px;
     background-color: #f4f4f4;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    align-items: center;
     justify-content: center;
 }
 
 .modal-content input{
-    margin-top: 10px;
     margin-bottom: 10px;
-    width: 95%;
+    width: 85.5vw;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
     border-radius: 5px;
-    padding: 5px;
+    padding: 6px;
+    padding-right: 25px;
     border: 1px solid #ccc;
     outline: none;
     color: rgb(35, 35, 35);
     background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgb(190, 190, 190) 100%);
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+.modal-buttons{
+    display: flex; /* Cambiar de grid a flex */
+    flex-wrap: wrap; /* Agregar esta propiedad para que se acomoden de manera flexible */
+    justify-content: space-between; /* Agregar esta propiedad para que haya espacio entre los botones */
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 .modal-content input::placeholder{
@@ -231,12 +267,12 @@ h1 {
     display: flex; /* Cambiar de grid a flex */
     flex-wrap: wrap; /* Agregar esta propiedad para que se acomoden de manera flexible */
     justify-content: space-between; /* Agregar esta propiedad para que haya espacio entre los botones */
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 .closeResponse{
     flex-basis: 0; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
     flex-grow: 1; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     font-size: 1em;
     cursor: pointer;
@@ -297,15 +333,14 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-left: 2px;
     margin-right: 2px;
     flex-basis: 0; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
-    flex-grow: 2; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
+    flex-grow: 1; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
     padding: 2px 5px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
-    width: 50%;
-    height: 100%;
+    width: 30%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -322,9 +357,8 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
-    width: 50%;
-    height: 100%;
+    width: 30%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: stretch;
