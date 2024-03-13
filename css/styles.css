@@ -1,0 +1,339 @@
+html{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    background-color: #f4f4f4;
+}
+
+
+/* Estilos de la barra de navegación */
+.tab-container {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.tab-option{
+    flex-basis: 0; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
+    flex-grow: 1; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
+    padding: 15px;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    border: 0px;
+    background-color: #f4f4f4;
+    border-bottom: 2px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
+    width: 100%; /* Establecer el ancho en 100% para que los botones abarquen todo el ancho disponible */
+  }
+
+.tab-buttons {
+    display: flex; /* Cambiar de grid a flex */
+    flex-wrap: wrap; /* Agregar esta propiedad para que se acomoden de manera flexible */
+    justify-content: space-between; /* Agregar esta propiedad para que haya espacio entre los botones */
+    margin-bottom: 20px;
+  }
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+.tab-option.active{
+    background-color: #bbbbbb;
+    border-bottom: 5px solid gray;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+}
+
+
+
+
+
+/* Estilos del contenido de las pestañas */
+.tab-container button {
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #a7a7a7;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+
+.tab-content {
+    margin-left: 15px;
+    margin-right: 5px;
+    flex-basis: 35%; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
+    flex-grow: 0; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.tab-content input[type="text"], .tab-content input[type="number"]{
+    padding: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2.3em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+/* Estilos de la tabla */
+.table-content {
+    margin-left: 5px;
+    margin-right: 15px;
+    flex-basis: 0; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
+    flex-grow: 1; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.table-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-content th, .table-content td {
+    max-width: 4.1vw;
+    text-align: center;
+    padding: 3px;
+    overflow: hidden; /* Oculta el texto que se sale del ancho máximo */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos al texto que se sale del ancho máximo */
+    border: 1px solid #cccccc;
+}
+
+.table-content th {
+    background-color: #f4f4f4;
+    font-size: 0.6em;
+}
+
+.table-content img{
+    width: 1.7vw;
+    height: auto;
+}
+
+
+
+
+
+
+/* Estilos generales del modal */
+.modal-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.modal-content {
+    position: relative;
+    max-width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    justify-content: center;
+}
+
+.modal-content input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 95%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    color: rgb(35, 35, 35);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgb(190, 190, 190) 100%);
+}
+
+.modal-content input::placeholder{
+    color: rgba(0, 0, 0, 0.548);
+}
+
+.modal-content label{
+    margin-left: 1px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: rgb(70, 69, 69);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(93, 93, 93, 0) 100%);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 1);
+    border-radius: 50%;
+}
+
+.close:hover{
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.742) 0%, rgba(93, 93, 93, 0.5) 100%);
+    color: rgba(0, 0, 0, 1);
+    transform: scale(1.2);
+}
+
+.close:active{
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(93, 93, 93, 0.5) 100%);
+    color: rgba(0, 0, 0, 1);
+    transform: scale(1.1);   
+}
+
+.modal-buttons{
+    display: flex; /* Cambiar de grid a flex */
+    flex-wrap: wrap; /* Agregar esta propiedad para que se acomoden de manera flexible */
+    justify-content: space-between; /* Agregar esta propiedad para que haya espacio entre los botones */
+    margin-bottom: 20px;
+}
+.closeResponse{
+    flex-basis: 0; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
+    flex-grow: 1; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
+    padding: 15px;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    border: 1px solid #cccccc;
+    background-color: #ecebeb;
+    border-bottom: 2px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
+    width: 100%;
+}
+
+/* Estilos para input válido */
+input:valid {
+    border: 1px solid green;
+    background: lightgreen;
+  }
+  
+  /* Estilos para input inválido o requerido */
+  input:invalid {
+    border: 1px solid red;
+    animation: blink 1s infinite; /* Animación de parpadeo */
+  }
+
+  input {
+    outline: none;
+  }
+
+
+button:hover {
+    background-color: #4e4e4e;
+}
+
+  /* Animación de parpadeo */
+  @keyframes blink {
+    50% {
+      border: 1px solid rgb(104, 49, 49);
+      background: radial-gradient(circle, rgba(252, 116, 116, 0.292) 0%, rgba(157, 32, 32, 0.489) 100%);
+    }
+  }
+
+/* Estilo para ocultar las flechas en el input number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Estilos para el desglose */
+.desglose-content{
+    display: flex; /* Cambiar de grid a flex */
+    flex-wrap: wrap; /* Agregar esta propiedad para que se acomoden de manera flexible */
+    justify-content: space-between; /* Agregar esta propiedad para que haya espacio entre los botones */
+}
+
+.desglose-content .izquierda{
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    flex-basis: 0; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
+    flex-grow: 2; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
+    padding: 2px 5px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.desglose-content .derecha{
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    flex-basis: 0; /* Establecer la propiedad flex-basis en 0 para que los botones se ajusten de ancho */
+    flex-grow: 1; /* Establecer la propiedad flex-grow en 1 para que los botones crezcan y ocupen el espacio disponible */
+    padding: 2px 5px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    box-sizing: border-box; /* Agregar esta propiedad para que el ancho de los botones incluya el padding y el borde */
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.desglose-content p, label{
+    margin: 3px;
+    padding: 2px;
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
