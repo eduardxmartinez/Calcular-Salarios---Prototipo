@@ -18,7 +18,7 @@ window.openTab =  function openTab(evt, tabName) {
 
 
 const options = {
-    "Calcular por hora": {
+    "Calcular por horas": {
         'Nombre': 'text',
         'Apellidos': 'text',
         'Edad': 'number', 
@@ -27,7 +27,7 @@ const options = {
         'Horas laboradas':'number', 
         'Horas extras':'number',
     },
-    "Calcular por dia": {
+    "Calcular por dias": {
         'Nombre': 'text',
         'Apellidos': 'text',
         'Edad': 'number', 
@@ -45,7 +45,7 @@ const tableData= {};
 
   
 function tabOptions() {
-    let principalOption = 'Calcular por hora';
+    let principalOption = 'Calcular por horas';
     const tabOption = document.getElementById("tab-buttons");
     let i = 1; // Mover la declaración de i fuera del bucle
     for (const key in options) {
