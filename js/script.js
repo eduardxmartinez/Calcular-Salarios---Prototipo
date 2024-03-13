@@ -70,10 +70,9 @@ function tabOptions() {
     }
     contentTab(principalOption);
     showData(principalOption);
+    showDeatails(principalOption);
 };
-
 document.addEventListener("DOMContentLoaded", tabOptions);
-
 
 function contentTab(tabName) {
     let tabsContent = document.getElementById('tabs');
@@ -142,9 +141,7 @@ html += `</select><br/>`;
 
 function addData(tabName, data) {
     for (const key in data) {
-        console.log(key, '2')
         if(key === 'Bonificaciones' && data[key].length == 0){
-            console.log(key)
             tableData[tabName][key].push([]);
         }else{
             tableData[tabName][key].push(data[key]);
@@ -156,7 +153,7 @@ function addData(tabName, data) {
     const impuestosDisponibles = []
     for(const key in impuestos){
         impuestosDisponibles.push(key);
-    }
+    };
     tableData[tabName]['Impuestos'].push(impuestosDisponibles);
     let salarioMensualSemanal = 0;
     for(const key in data){
@@ -173,16 +170,28 @@ function addData(tabName, data) {
     }
     tableData[tabName]['Bonos'].push(bonoMes.toFixed(2));
     let totalImpuesto = 0;
+    let impuesto = 0;
     for(let i = 0; i < impuestosDisponibles.length; i++){
-        const impuesto = impuestos[impuestosDisponibles[i]] * salarioMensualSemanal;
-        totalImpuesto += impuesto;
+        if(impuestosDisponibles[i] === 'ISPT'){
+            for(const key in impuestos[impuestosDisponibles[i]]){
+                if(salarioMensualSemanal >= impuestos[impuestosDisponibles[i]][key][0] && salarioMensualSemanal <= impuestos[impuestosDisponibles[i]][key][1]){
+                    impuesto = key * salarioMensualSemanal;
+                    totalImpuesto += impuesto;
+                }
+            }
+        }else{
+            impuesto = impuestos[impuestosDisponibles[i]] * salarioMensualSemanal;
+            totalImpuesto += impuesto;
+        }
     }
     tableData[tabName]['Impuesto'].push(totalImpuesto.toFixed(2));
     
     const totalPagar = salarioMensualSemanal + bonoMes - totalImpuesto;
     tableData[tabName]['Total'].push(salarioMensualSemanal.toFixed(2));
     tableData[tabName]['Total con bono e impuesto'].push(totalPagar.toFixed(2));
+    console.log(tableData[tabName])
     showData(tabName);
+    showDeatails(tabName);
 };
 
 function showData(tabName) {
@@ -190,7 +199,6 @@ function showData(tabName) {
         document.getElementById('table-content').innerHTML = 'No existe información para mostrar';
     }else{
         const data = tableData[tabName];
-        console.log(data);
         const table = document.getElementById('table-content');
         table.innerHTML = ''; // Limpiar el contenido existente
         let html = `<table border='1' id='${tabName}'>`;
@@ -238,7 +246,6 @@ window.editDataModal = function editDataModal(tabName, index) {
     for (const key in tableData[tabName]) {
         info[key] = tableData[tabName][key][index]; 
     };
-    console.log(info)
     let html = `
     <div class="modal-header">
         <h2>Modificar registro</h2>
@@ -380,27 +387,18 @@ window.showDeatails = function showDeatails(tabName) {
         // Check if the clicked td is NOT the last or second-to-last
         if (td.cellIndex !== fila.cells.length - 1 && td.cellIndex !== fila.cells.length - 2) {
           const index = fila.id;
-          console.log(index, 'index');
-          console.log(idTable, 'idTable');
-          console.log(tableData[idTable], 'tableData')
           showDetailsModal(idTable, index);
         }
       }
     });
   };
   
-
 window.showDetailsModal = function showDetailsModal(tabName, index) {
-    console.log(index, 'index')
-    console.log(tabName, 'tabName')
     const data = tableData[tabName];
-    console.log(data, 'data')
     let infoSalary = {};
     for (const key in data) {
         infoSalary[key] = data[key][index];
     }
-    console.log(data)
-    console.log(infoSalary)
     const modal = document.getElementById("modal");
     const modalContent = document.getElementById("modal-content");
     let html = `
@@ -433,7 +431,15 @@ window.showDetailsModal = function showDetailsModal(tabName, index) {
                 html += `<div class="izquierda">`;
                 html += `<label>Impuestos:</label>`;
                 for(let i = 0; i < infoSalary['Impuestos'].length; i++){
+                    if(infoSalary['Impuestos'][i] === 'ISPT'){
+                        for(const key in impuestos[infoSalary['Impuestos'][i]]){
+                            if(infoSalary['Total'] >= impuestos[infoSalary['Impuestos'][i]][key][0] && infoSalary['Total'] <= impuestos[infoSalary['Impuestos'][i]][key][1]){
+                                html += `<p>${infoSalary['Impuestos'][i]}: ${((key*1)*100).toFixed(2)}% * $${(infoSalary['Total']*1).toFixed(2)} = $${(key * infoSalary['Total']).toFixed(2)}</p>`;
+                            }
+                        }
+                    }else{
                     html += `<p>${infoSalary['Impuestos'][i]}: ${(impuestos[infoSalary['Impuestos'][i]]*100).toFixed(2)}% * $${(infoSalary['Total']*1).toFixed(2)} = $${(impuestos[infoSalary['Impuestos'][i]] * infoSalary['Total']).toFixed(2)}</p>`;
+                    }
                 }
                 html += `<p>Total impuestos: $${(infoSalary['Impuesto']*1).toFixed(2)}</p>`;
                 html += `</div>`;
@@ -460,7 +466,15 @@ window.showDetailsModal = function showDetailsModal(tabName, index) {
                 html += `<div class="izquierda">`;
                 html += `<label>Impuestos:</label>`;
                 for(let i = 0; i < infoSalary['Impuestos'].length; i++){
+                    if(infoSalary['Impuestos'][i] === 'ISPT'){
+                        for(const key in impuestos[infoSalary['Impuestos'][i]]){
+                            if(infoSalary['Total'] >= impuestos[infoSalary['Impuestos'][i]][key][0] && infoSalary['Total'] <= impuestos[infoSalary['Impuestos'][i]][key][1]){
+                                html += `<p>${infoSalary['Impuestos'][i]}: ${((key*1)*100).toFixed(2)}% * $${(infoSalary['Total']*1).toFixed(2)} = $${(key * infoSalary['Total']).toFixed(2)}</p>`;
+                            }
+                        }
+                    }else{
                     html += `<p>${infoSalary['Impuestos'][i]}: ${(impuestos[infoSalary['Impuestos'][i]]*100).toFixed(2)}% * $${(infoSalary['Total']*1).toFixed(2)} = $${(impuestos[infoSalary['Impuestos'][i]] * infoSalary['Total']).toFixed(2)}</p>`;
+                    }
                 }
                 html += `<p>Total impuestos: $${(infoSalary['Impuesto']*1).toFixed(2)}</p>`;
                 html += `</div>`;
