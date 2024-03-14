@@ -6,13 +6,21 @@ Calcular por horas: calcula tu salario en base a las horas trabajadas
 Calcular por día: calcula tu salario en base a los días trabajados
 
 Se selecciona una de las dos pestañas antes de comenzar a llenar los campos. Una vez seleccionada una pestaña se encuentran los campos a llenar del lado izquierdo.  En orden el listado de campos:
+
 Nombre: campo de tipo texto donde se ingresa el nombre del trabajador.
+
 Apellidos: campo de tipo texto donde se ingresa el apellido del trabajador. 
+
 Edad: campo de tipo numérico donde se ingresa la edad del trabajador, sólo permite números enteros del 18 en adelante.
+
 Puesto: campo de tipo texto donde se ingresa el nombre del puesto del trabajador. 
+
 Salario por hora/día: campo de tipo numérico donde se ingresa el pago por hora/día del trabajador, sólo permite números mayores o iguales 0.
+
 horas/días laboradas: campo de tipo numérico donde se ingresa el numero de horas/días trabajadas por el trabajador, sólo permite números mayores o iguales 0.
+
 horas/días extras: campo de tipo numérico donde se ingresa el numero de horas/días extras trabajadas por el trabajador, sólo permite números mayores o iguales 0.
+
 
 Los campos se muestran con un color rojo si se ingresa un valor inválido y verde cuando se ingresa un valor válido. Al tener todos los campos en verde, se habilita el botón para enviar los datos y generar una nomina. 
 
