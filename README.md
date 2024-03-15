@@ -29,3 +29,8 @@ Se pueden seleccionar distintos tipos de bonificaciones si así se desea, en cas
 Al hacer click en el botón enviar se genera una lista del lado derecho con los datos enviados. Al dar click en eliminar se elimina de la lista. Al dar click en editar se muestra una ventana para editar los datos. Se muestran dos botones en la parte inferior, guardar en caso de querer guardar los cambios y cancelar en caso de no querer hacer ningún cambio.
 
 Al dar click en cualquier dato de algún registro se muestra el desglose del salario y se encuentra un botón en la parte inferior para salir y en la esquina superior derecha se encuentra otro botón para salir.
+
+# Funcionamiento
+Nuesro propósito fue crear lo mas similar a un generador de nominas, incluyendo un listado de todos los registros generados con posibilidad de edición. Por esto decidimos incluir un formulario con distintos tipos de datos, los campos admiten números o letras según su tipo, cada uno de estos funciona correctamente. Hicimos pruebas unitarias y de integración para verificar que sólo se admitieran valores válidos para este caso. En caso de querer ingresar un valor erroneo no es posible enviar el formulario. Decidimos mostrar de manera visual esto al mostrar de color rojo los campos con valores inválidos y en verde con valores válidos. 
+
+Nuestra referencia de funcionamiento es que se puedan ingresar valores en un formulario y al momento de enviar se genera una nomina en base a los datos, lo cual funciona.
